@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup,  } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import pointer from "../Pictures/pointer.png"
@@ -14,6 +14,12 @@ const customIcon = new L.Icon({
 
 const Home = () => {
     let [data, setData]= useState([]);
+    const [satelliteView, setSatelliteView] = useState(false); // Toggle state
+    // const position = [37.7749, -122.4194]; // Example coordinates
+  
+    const handleToggle = () => {
+      setSatelliteView(!satelliteView);
+    };
     useEffect(()=>{
         async function getData(){
           try{
@@ -29,15 +35,7 @@ const Home = () => {
         };
         getData();
       }, [])
-  const markers = [
-    { lat: 64.9631, lng: -19.0208, name: 'Place 1', description: 'Description for Place 1' },
-    { lat: 65.0131, lng: -18.0208, name: 'Place 2', description: 'Description for Place 2' },
-    { lat: 63.0131, lng: -19.0208, name: 'Place 3', description: 'Description for Place 3' },
-    { lat: 64.0131, lng: -19.0298, name: 'Place 4', description: 'Description for Place 4' },
-    { lat: 65.1131, lng: -19.0278, name: 'Place 5', description: 'Description for Place 5' },
-    { lat: 65.3231, lng: -19.0308, name: 'Place 6', description: 'Description for Place 6' },
-    // Add more marker objects here with name and description
-  ];
+ 
 //   function cleanWord(word){
 //     console.log("Word", word);
 //   }
@@ -52,11 +50,48 @@ const Home = () => {
   };
 
   return (
+    <>
+    <div style={{display : "flex", justifyContent : "center", alignItems : "center", position : 'fixed', top : 0, display: "flex", zIndex : 10000, width: "100%", paddingTop : "1%" }}>
+    <button onClick={handleToggle} style={{border: "none", padding : "1%", backgroundColor : "#03055b", color : "white", cursor : "pointer"  }}>
+        {satelliteView ? "Switch to Normal View" : "Switch to Satellite View"}
+      </button>
+    </div>
+   
     <MapContainer center={[30, 9]} zoom={7} style={{ height: "100vh", width: "100%" }}>
-      <TileLayer
+
+      {
+        satelliteView
+
+        ?
+        
+        <>
+     <TileLayer
+        url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2lnbWEtMTIzIiwiYSI6ImNsenI1N3owdDFpZG8ybHNpNzg0dXY1Z3YifQ.PWsoXsSJtwCmb0h8gsnkjA"
+        attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
+      /> 
+
+       
+       <TileLayer
+        url="https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2lnbWEtMTIzIiwiYSI6ImNsenI1N3owdDFpZG8ybHNpNzg0dXY1Z3YifQ.PWsoXsSJtwCmb0h8gsnkjA"
+        attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
+      /> 
+      </>
+
+        :
+         <>
+           <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
+         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        /> 
+        </>
+      }
+
+        
+      
+
+     
+
+
       {data.map((marker, i)=>{
         // console.log(marker)
         if(i<=10){
@@ -84,6 +119,7 @@ const Home = () => {
         
       })}
     </MapContainer>
+    </>
   );
 }
 
