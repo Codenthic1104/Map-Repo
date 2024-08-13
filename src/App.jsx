@@ -5,6 +5,7 @@ import './App.css'
 import {Routes, Route} from 'react-router-dom'
 import { Home } from './Pages/Home'
 import { FullMap } from './Pages/FullMap'
+import { Map } from './Pages/Map'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
        <Routes>
        <Route path='/' Component={Home} /> 
        <Route path='/fullmap' Component={FullMap} />
+       <Route path='/map/:name/:lat/:lng' Component={Map} />
        </Routes>
     </>
   )

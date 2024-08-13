@@ -6,7 +6,7 @@ import { List } from './List'
 function Container() {
   return (
     <>
-        <div className='w-[100%] h-[100vh] flex justify-center items-center '>
+        <div className='w-[100%] h-[100vh] grid md:grid-cols-2 grid-cols-1'>
             <div className='w-[100%] h-[100%] px-[5%] py-[10%] '>
                 <h2 className='text-[1.5rem] font-bold my-[20px]'>Digital solutions for recreational fishing.</h2>
                 <p className='wrap text-[.9rem] text-[gray] my-[10px]'>Angling iQ offers digital solutions for fishermen and businesses. Our goal is to be able to satisfy the demands of all fisheries with exceptional software and service.</p>
