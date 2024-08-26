@@ -6,6 +6,9 @@ import 'leaflet/dist/leaflet.css';
 import pointer from "../Pictures/pointer.png";
 import { FaLocationDot } from "react-icons/fa6";
 import { useParams } from 'react-router-dom';
+import { NewsLetter } from '../Component/NewsLetter';
+import { Footer } from '../Component/Footer';
+import { Table } from '../Component/Table';
 
 const customIcon = new L.Icon({
     iconUrl: pointer,
@@ -55,6 +58,10 @@ function Map(props) {
 
             </div>
         </div>
+
+        <Table />
+        <NewsLetter />
+        <Footer />
     </>
   )
 }
