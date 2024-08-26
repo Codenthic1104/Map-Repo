@@ -7,12 +7,14 @@ import { NewsLetter } from '../Component/NewsLetter'
 import { Content1 } from '../Component/Content1'
 import { Content2 } from '../Component/Content2'
 import { Content3 } from '../Component/Content3'
+import { Hero } from '../Component/Hero'
 
 function Home() {
   return (
     <>
       <Nav />
-      <Container />
+      <Hero />
+      {/* <Container /> */}
       <Content2 />
       <Content3 />
       <Content1 />

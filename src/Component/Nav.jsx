@@ -4,8 +4,8 @@ import pointer from "../Pictures/pointer.png"
 function Nav() {
   return (
     <>
-        <header className="text-gray-600 body-font">
-  <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center shadow-md shadow-gray-300">
+        <header className="text-gray-600 body-font w-[100vw]">
+  <div className="container-fluid flex flex-wrap p-5 flex-col md:flex-row items-center shadow-md shadow-gray-300 ">
     <NavLink to={"/"} className="flex justify-center title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
       <div>
       <img src={pointer} alt="" className='w-[30px] h-[30px]' />
